@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Usage &mdash; EasyProcess 0.1.0 documentation</title>
+    <title>Usage &mdash; EasyProcess 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="EasyProcess 0.1.0 documentation" href="index.html" />
+    <link rel="top" title="EasyProcess 0.1.1 documentation" href="index.html" />
     <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="About" href="readme.html" /> 
   </head>
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="readme.html" title="About"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">EasyProcess 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">EasyProcess 0.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,17 +56,32 @@
             
   <div class="section" id="module-easyprocess">
 <span id="usage"></span><h1>Usage<a class="headerlink" href="#module-easyprocess" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-example">
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h2>
+<p>Example program:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">easyprocess</span> <span class="kn">import</span> <span class="n">EasyProcess</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span>
+<span class="k">print</span> <span class="s">&#39;your python version:&#39;</span><span class="p">,</span> <span class="n">v</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ python -m easyprocess.examples.ver
+your python version: Python 2.6.6
+</pre></div>
+</div>
+</div>
 <div class="section" id="general">
 <h2>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">easyprocess</span> <span class="kn">import</span> <span class="n">EasyProcess</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait for it to complete, get stdout (command is string):</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;echo hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
-<span class="go">&#39;hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python -c &quot;print 3&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
+<span class="go">&#39;3&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait for it to complete, get stdout (command is list):</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">([</span><span class="s">&#39;echo&#39;</span><span class="p">,</span><span class="s">&#39;hello&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
-<span class="go">&#39;hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">([</span><span class="s">&#39;python&#39;</span><span class="p">,</span><span class="s">&#39;-c&#39;</span><span class="p">,</span><span class="s">&#39;print 3&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
+<span class="go">&#39;3&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait for it to complete, get stderr:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span>
@@ -79,8 +94,17 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait 1 second, stop it, get stdout:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.024 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.022 ms</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="shell-commands">
+<h2>Shell commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">¶</a></h2>
+<p>Shell commands are not supported.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><tt class="docutils literal"><span class="pre">echo</span></tt> is a shell command on Windows (there is no echo.exe),
+but it is a program on Linux</p>
 </div>
 </div>
 <div class="section" id="return-code">
@@ -143,8 +167,8 @@ and stopped automatically:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run ping with  timeout</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.030 ms</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.030 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.019 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.024 ms</span>
 </pre></div>
 </div>
 </div>
@@ -157,7 +181,6 @@ and stopped automatically:</p>
 <span class="c"># turn on logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
-<span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;echo hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
 <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
 <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
@@ -174,31 +197,25 @@ and stopped automatically:</p>
 </div>
 <p>Output:</p>
 <div class="highlight-text"><div class="highlight"><pre>$ python -m easyprocess.examples.log
-DEBUG:easyprocess:param: &quot;echo hello&quot; command: [&#39;echo&#39;, &#39;hello&#39;] (&quot;echo hello&quot;)
-DEBUG:easyprocess:reading config: /home/titi/.easyprocess.cfg
-DEBUG:easyprocess:process was started (pid=27343)
-DEBUG:easyprocess:process has ended
-DEBUG:easyprocess:return code=0
-DEBUG:easyprocess:stdout=hello
-DEBUG:easyprocess:stderr=
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
-DEBUG:easyprocess:process was started (pid=27344)
+DEBUG:easyprocess:reading config: /home/titi/.easyprocess.cfg
+DEBUG:easyprocess:process was started (pid=9667)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
 DEBUG:easyprocess:stderr=Python 2.6.6
 DEBUG:easyprocess:param: &quot;ping localhost&quot; command: [&#39;ping&#39;, &#39;localhost&#39;] (&quot;ping localhost&quot;)
-DEBUG:easyprocess:process was started (pid=27345)
-DEBUG:easyprocess:stopping process (pid=27345 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
+DEBUG:easyprocess:process was started (pid=9668)
+DEBUG:easyprocess:stopping process (pid=9668 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
 DEBUG:easyprocess:process is active -&gt; sending SIGTERM
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=-15
 DEBUG:easyprocess:stdout=PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.031 ms
-64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.025 ms
+64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.022 ms
+64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.021 ms
 DEBUG:easyprocess:stderr=
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
-DEBUG:easyprocess:process was started (pid=27347)
+DEBUG:easyprocess:process was started (pid=9670)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
@@ -206,7 +223,7 @@ DEBUG:easyprocess:stderr=Python 2.6.6
 DEBUG:easyprocess:param: &quot;bad_command&quot; command: [&#39;bad_command&#39;] (&quot;bad_command&quot;)
 DEBUG:easyprocess:OSError exception:[Errno 2] No such file or directory
 DEBUG:easyprocess:param: &quot;sh -c bad_command&quot; command: [&#39;sh&#39;, &#39;-c&#39;, &#39;bad_command&#39;] (&quot;sh -c bad_command&quot;)
-DEBUG:easyprocess:process was started (pid=27349)
+DEBUG:easyprocess:process was started (pid=9672)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=127
 DEBUG:easyprocess:stdout=
@@ -287,7 +304,9 @@ print p.stdout</pre>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#simple-example">Simple example</a></li>
 <li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#shell-commands">Shell commands</a></li>
 <li><a class="reference internal" href="#return-code">return_code</a></li>
 <li><a class="reference internal" href="#with">With</a></li>
 <li><a class="reference internal" href="#timeout">Timeout</a></li>
@@ -342,12 +361,12 @@ print p.stdout</pre>
         <li class="right" >
           <a href="readme.html" title="About"
              >previous</a> |</li>
-        <li><a href="index.html">EasyProcess 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">EasyProcess 0.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, ponty.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
