@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Usage &mdash; EasyProcess 0.1.1 documentation</title>
+    <title>Usage &mdash; EasyProcess 0.1.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1.1',
+        VERSION:     '0.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="EasyProcess 0.1.1 documentation" href="index.html" />
+    <link rel="top" title="EasyProcess 0.1.2 documentation" href="index.html" />
     <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="About" href="readme.html" /> 
   </head>
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="readme.html" title="About"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">EasyProcess 0.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">EasyProcess 0.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -94,7 +94,8 @@ your python version: Python 2.6.6
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait 1 second, stop it, get stdout:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.022 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.026 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.020 ms</span>
 </pre></div>
 </div>
 </div>
@@ -167,8 +168,7 @@ and stopped automatically:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run ping with  timeout</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.019 ms</span>
-<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.024 ms</span>
+<span class="go">64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.026 ms</span>
 </pre></div>
 </div>
 </div>
@@ -199,23 +199,22 @@ and stopped automatically:</p>
 <div class="highlight-text"><div class="highlight"><pre>$ python -m easyprocess.examples.log
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
 DEBUG:easyprocess:reading config: /home/titi/.easyprocess.cfg
-DEBUG:easyprocess:process was started (pid=9667)
+DEBUG:easyprocess:process was started (pid=2297)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
 DEBUG:easyprocess:stderr=Python 2.6.6
 DEBUG:easyprocess:param: &quot;ping localhost&quot; command: [&#39;ping&#39;, &#39;localhost&#39;] (&quot;ping localhost&quot;)
-DEBUG:easyprocess:process was started (pid=9668)
-DEBUG:easyprocess:stopping process (pid=9668 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
+DEBUG:easyprocess:process was started (pid=2298)
+DEBUG:easyprocess:stopping process (pid=2298 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
 DEBUG:easyprocess:process is active -&gt; sending SIGTERM
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=-15
 DEBUG:easyprocess:stdout=PING localhost.localdomain (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.022 ms
-64 bytes from localhost.localdomain (127.0.0.1): icmp_req=2 ttl=64 time=0.021 ms
+64 bytes from localhost.localdomain (127.0.0.1): icmp_req=1 ttl=64 time=0.023 ms
 DEBUG:easyprocess:stderr=
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
-DEBUG:easyprocess:process was started (pid=9670)
+DEBUG:easyprocess:process was started (pid=2299)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
@@ -223,7 +222,7 @@ DEBUG:easyprocess:stderr=Python 2.6.6
 DEBUG:easyprocess:param: &quot;bad_command&quot; command: [&#39;bad_command&#39;] (&quot;bad_command&quot;)
 DEBUG:easyprocess:OSError exception:[Errno 2] No such file or directory
 DEBUG:easyprocess:param: &quot;sh -c bad_command&quot; command: [&#39;sh&#39;, &#39;-c&#39;, &#39;bad_command&#39;] (&quot;sh -c bad_command&quot;)
-DEBUG:easyprocess:process was started (pid=9672)
+DEBUG:easyprocess:process was started (pid=2303)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=127
 DEBUG:easyprocess:stdout=
@@ -361,7 +360,7 @@ print p.stdout</pre>
         <li class="right" >
           <a href="readme.html" title="About"
              >previous</a> |</li>
-        <li><a href="index.html">EasyProcess 0.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">EasyProcess 0.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
