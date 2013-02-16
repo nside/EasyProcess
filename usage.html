@@ -62,13 +62,13 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">easyprocess</span> <span class="kn">import</span> <span class="n">EasyProcess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="n">v</span> <span class="o">=</span> <span class="n">EasyProcess</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span> <span class="p">,</span> <span class="s">&#39;--version&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">EasyProcess</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s">&#39;--version&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;your python version:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-text"><div class="highlight"><pre>$ python -m easyprocess.examples.ver
-your python version:Python 2.7.2+
+your python version:Python 2.7.3
 </pre></div>
 </div>
 </div>
@@ -86,7 +86,7 @@ your python version:Python 2.7.2+
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait for it to complete, get stderr:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span>
-<span class="go">u&#39;Python 2.7.2+&#39;</span>
+<span class="go">u&#39;Python 2.7.3&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait for it to complete, get return code:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">return_code</span>
@@ -95,8 +95,7 @@ your python version:Python 2.7.2+
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run program, wait 1 second, stop it, get stdout:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.021 ms</span>
-<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=2 ttl=64 time=0.027 ms</span>
+<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.031 ms</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Unicode support</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">EasyProcess</span><span class="p">([</span><span class="s">&#39;python&#39;</span><span class="p">,</span><span class="s">&#39;-c&#39;</span><span class="p">,</span><span class="s">&#39;print unichr(0x03A9).encode(&quot;utf-8&quot;)&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stdout</span>
@@ -173,8 +172,8 @@ and stopped automatically:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Run ping with  timeout</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;ping localhost&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
 <span class="go">PING localhost (127.0.0.1) 56(84) bytes of data.</span>
-<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.033 ms</span>
-<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=2 ttl=64 time=0.028 ms</span>
+<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.019 ms</span>
+<span class="go">64 bytes from localhost (127.0.0.1): icmp_req=2 ttl=64 time=0.030 ms</span>
 </pre></div>
 </div>
 </div>
@@ -205,36 +204,37 @@ and stopped automatically:</p>
 <div class="highlight-text"><div class="highlight"><pre>$ python -m easyprocess.examples.log
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
 DEBUG:easyprocess:reading config: /home/titi/.easyprocess.cfg
-DEBUG:easyprocess:process was started (pid=8790)
+DEBUG:easyprocess:process was started (pid=21281)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
-DEBUG:easyprocess:stderr=Python 2.7.2+
+DEBUG:easyprocess:stderr=Python 2.7.3
 DEBUG:easyprocess:param: &quot;ping localhost&quot; command: [&#39;ping&#39;, &#39;localhost&#39;] (&quot;ping localhost&quot;)
-DEBUG:easyprocess:process was started (pid=8791)
-DEBUG:easyprocess:stopping process (pid=8791 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
+DEBUG:easyprocess:process was started (pid=21282)
+DEBUG:easyprocess:stopping process (pid=21282 cmd=&quot;[&#39;ping&#39;, &#39;localhost&#39;]&quot;)
 DEBUG:easyprocess:process is active -&gt; sending SIGTERM
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=-15
 DEBUG:easyprocess:stdout=PING localhost (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.024 ms
+64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.022 ms
+64 bytes from localhost (127.0.0.1): icmp_req=2 ttl=64 time=0.025 ms
 DEBUG:easyprocess:stderr=
 DEBUG:easyprocess:param: &quot;python --version&quot; command: [&#39;python&#39;, &#39;--version&#39;] (&quot;python --version&quot;)
-DEBUG:easyprocess:process was started (pid=8792)
+DEBUG:easyprocess:process was started (pid=21361)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=0
 DEBUG:easyprocess:stdout=
-DEBUG:easyprocess:stderr=Python 2.7.2+
+DEBUG:easyprocess:stderr=Python 2.7.3
 DEBUG:easyprocess:param: &quot;bad_command&quot; command: [&#39;bad_command&#39;] (&quot;bad_command&quot;)
 DEBUG:easyprocess:OSError exception:[Errno 2] No such file or directory
 DEBUG:easyprocess:param: &quot;sh -c bad_command&quot; command: [&#39;sh&#39;, &#39;-c&#39;, &#39;bad_command&#39;] (&quot;sh -c bad_command&quot;)
-DEBUG:easyprocess:process was started (pid=8794)
+DEBUG:easyprocess:process was started (pid=21364)
 DEBUG:easyprocess:process has ended
 DEBUG:easyprocess:return code=127
 DEBUG:easyprocess:stdout=
-DEBUG:easyprocess:stderr=sh: bad_command: not found
+DEBUG:easyprocess:stderr=sh: 1: bad_command: not found
 start error &lt;EasyProcess cmd_param=bad_command alias={alias} cmd=[&#39;bad_command&#39;] ({scmd}) oserror=[Errno 2] No such file or directory returncode=None stdout=&quot;None&quot; stderr=&quot;None&quot; timeout=False&gt;
-check error, return code is not zero! &lt;EasyProcess cmd_param=sh -c bad_command alias={alias} cmd=[&#39;sh&#39;, &#39;-c&#39;, &#39;bad_command&#39;] ({scmd}) oserror=None returncode=127 stdout=&quot;&quot; stderr=&quot;sh: bad_command: not found&quot; timeout=False&gt;
+check error, return code is not zero! &lt;EasyProcess cmd_param=sh -c bad_command alias={alias} cmd=[&#39;sh&#39;, &#39;-c&#39;, &#39;bad_command&#39;] ({scmd}) oserror=None returncode=127 stdout=&quot;&quot; stderr=&quot;sh: 1: bad_command: not found&quot; timeout=False&gt;
 </pre></div>
 </div>
 </div>
@@ -294,7 +294,7 @@ print p.stdout</pre>
 
 <div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">easyprocess</span> <span class="kn">import</span> <span class="n">EasyProcess</span><span class="p">,</span> <span class="n">extract_version</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">extract_version</span><span class="p">(</span><span class="n">EasyProcess</span><span class="p">(</span><span class="s">&#39;python --version&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="p">()</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-<span class="go">2.7.2+</span>
+<span class="go">2.7.3</span>
 </pre></div>
 </div>
 </div>
@@ -371,7 +371,7 @@ print p.stdout</pre>
     </div>
     <div class="footer">
         &copy; Copyright 2011, ponty.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
