@@ -226,6 +226,10 @@ class EasyProcess():
             self.stop()
         return self
 
+    @property
+    def env(self):
+      return None
+
     def start(self):
         '''
         start command in background and does not wait for it
@@ -254,6 +258,7 @@ class EasyProcess():
                                           stderr=stderr,
                                           # shell=1,
                                           cwd=self.cwd,
+                                          env=self.env
                                           )
         except OSError, oserror:
             log.debug('OSError exception:%s' % (oserror))
